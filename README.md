@@ -1,6 +1,6 @@
-# Aplicação de Agendamento e Confirmação via WhatsApp
+# Agendamento e Confirmação via WhatsApp
 
-Esta é uma aplicação de exemplo que permite agendar eventos e confirmar agendamentos via WhatsApp. A aplicação é projetada para ser agendada e executada automaticamente usando o Google Scheduler.
+Esta é uma aplicação que permite agendar eventos e confirmar agendamentos via WhatsApp. A aplicação é projetada para ser agendada e executada automaticamente usando o Google Scheduler (solução personalizada para Clínica de estética).
 
 ## Funcionalidades
 
