@@ -1,6 +1,7 @@
 import json
 import pywhatkit as kit
 from datetime import datetime, timedelta
+import requests
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
@@ -28,6 +29,24 @@ def atualizar_status_agendamento(id_agendamento, novo_status):
     except Exception as e:
         print(f"Erro ao atualizar o status do agendamento: {str(e)}")
         return False
+
+def coletar_informacoes():
+    try:
+        # Substitua esta URL pela URL da sua API
+        api_url = 'https://sua-api.com/obter_informacoes_agendamento'
+        response = requests.get(api_url)
+
+        if response.status_code == 200:
+            agendamentos = response.json()
+            agora = datetime.now()
+
+            for agendamento in agendamentos:
+                data_agendamento = datetime.strptime(agendamento['data'], '%Y-%m-%d %H:%M:%S')
+                if (data_agendamento - timedelta(days=1)) == agora:
+                    enviar_mensagem_whatsapp(agendamento['destinatario'], agendamento['evento'], data_agendamento)
+
+    except Exception as e:
+        print(f"Erro ao coletar informações do agendamento: {str(e)}")
 
 @app.route('/receber_agendamento', methods=['POST'])
 def receber_agendamento():
